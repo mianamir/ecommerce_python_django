@@ -117,8 +117,7 @@ def update_item(request):
 
 
 def process_order(request):
-    transcation_id = datetime.datetime.now().timestamp()
-
+    transaction_id = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
 
     if request.user.is_authenticated:
@@ -127,12 +126,14 @@ def process_order(request):
             customer=customer,
             complete = False)
         total = float(data['form']['total']) # cast the value, sometimes it is string
-        order.transcation_id = transcation_id
-
+        
         # check if total is not manipulated by user on frontend
         if total == order.get_cart_total:
             order.complete = True
-        order.save()
+            order.transaction_id = transaction_id
+            print(f"Order complete: yes")
+            print(f"Order: {order.id}, transcation_id: {order.transaction_id}")
+            order.save()
 
         # set shipping data
         if order.shipping == True:
