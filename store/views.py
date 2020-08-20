@@ -133,7 +133,7 @@ def process_order(request):
             order.transaction_id = transaction_id
             print(f"Order complete: yes")
             print(f"Order: {order.id}, transcation_id: {order.transaction_id}")
-            order.save()
+        order.save()
 
         # set shipping data
         if order.shipping == True:
