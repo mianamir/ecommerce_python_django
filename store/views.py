@@ -91,30 +91,29 @@ def process_order(request):
         order, created = Order.objects.get_or_create(
             customer=customer,
             complete=False)
+
     else:
-    
+
         customer, order = guest_order(request, data)
+    
+    # cast the value, sometimes it is string
+    total = float(data['form']['total'])
+    order.transaction_id = transaction_id
 
-        # cast the value, sometimes it is string
-        total = float(data['form']['total'])
+    # check if total is not manipulated by user on frontend
+    if total == float(order.get_cart_total):
+        order.complete = True
+    order.save()
 
-        # check if total is not manipulated by user on frontend
-        if total == float(order.get_cart_total):
-            order.complete = True
-            order.transaction_id = transaction_id
-            print(f"Order complete: yes")
-            print(f"Order: {order.id}, transcation_id: {order.transaction_id}")
-        order.save()
-
-        # set shipping data
-        if order.shipping == True:
-            ShippingAddress.objects.create(
-                customer=customer,
-                order=order,
-                address=data['shipping']['address'],
-                city=data['shipping']['city'],
-                state=data['shipping']['state'],
-                zipcode=data['shipping']['zipcode']
-            )
+    # set shipping data
+    if order.shipping == True:
+        ShippingAddress.objects.create(
+            customer=customer,
+            order=order,
+            address=data['shipping']['address'],
+            city=data['shipping']['city'],
+            state=data['shipping']['state'],
+            zipcode=data['shipping']['zipcode']
+        )
 
     return JsonResponse('Payment submitted...', safe=False)

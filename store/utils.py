@@ -10,8 +10,8 @@ def cookie_cart(request):
     print('Cart: ', cart)
     items = list()
     order = {
-        'get_cart_items': 0.0,
-        'get_cart_total': 0.0,
+        'get_cart_items': 0,
+        'get_cart_total': 0,
         'shipping': False
     }
     cart_items = order['get_cart_items']
