@@ -7,10 +7,6 @@ from .models import *
 from .utils import cart_data, cookie_cart, guest_order
 
 
-def paypal_test(request):
-    return render(request, "store/paypal_test.html")
-
-
 def store(request):
     data = cart_data(request)
     cart_items = data['cart_items']
@@ -121,3 +117,9 @@ def process_order(request):
         )
 
     return JsonResponse('Payment submitted...', safe=False)
+
+
+def paypal_test(request):
+    return render(request, "store/paypal_test.html")
+
+

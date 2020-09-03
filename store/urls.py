@@ -8,5 +8,6 @@ urlpatterns = [
 
     path('update_item/', views.update_item, name="update_item"),
     path('process_order/', views.process_order, name="process_order"),
+
     path('paypal_test/', views.paypal_test, name="paypal_test")
 ]
