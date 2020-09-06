@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     # 'stripe_app.apps.Stripe_AppConfig',
     'stripe_app',
-    'blog_app',
+    'blog_app.apps.BlogAppConfig',
 ]
 
 MIDDLEWARE = [
