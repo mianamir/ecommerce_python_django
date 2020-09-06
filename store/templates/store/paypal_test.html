@@ -1,0 +1,39 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    
+    <!-- Set up a container element for the button -->
+    <div id="paypal-button-container"></div>
+
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AbU2Nq3trxf_L4p0y30sgbkyAaJsME_82Gc7ywGAo9VGrHQsAOm92u7KTaugJA-ISn-BO9qIfOuVGfRL&currency=USD&disable-funding=credit"></script>
+
+    <script>
+        
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '500'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Show a success message to the buyer
+                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                });
+            }
+
+
+        }).render('#paypal-button-container');
+    </script>
+    
+{% endblock content %}
