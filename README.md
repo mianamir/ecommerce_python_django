@@ -5,3 +5,7 @@
 <br/>Product
 <br/>Cart
 <br/>Order
+<br/>Post
+<br/>Post Authors
+<br/>Stripe Api integretion
+<br/>PayPal Api integretion
