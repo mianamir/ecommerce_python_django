@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     # 'stripe_app.apps.Stripe_AppConfig',
     'stripe_app',
     'blog_app.apps.BlogAppConfig',
+    'users_app.apps.UsersAppConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +135,8 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/images/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 if os.getcwd() == '/app':
