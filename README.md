@@ -1,4 +1,4 @@
-# eCommerce Website using Python Django
+# Ecommerce Website using Python Django
 
 <br/>App Modules 
 <br/>Customer
