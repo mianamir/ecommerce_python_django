@@ -1,4 +1,4 @@
-# Ecommerce Wesbite using Python Django
+# eCommerce Website using Python Django
 
 <br/>App Modules 
 <br/>Customer
